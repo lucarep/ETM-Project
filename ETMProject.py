@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import colors
 from statistics import median
+from rich_dataframe import prettify
 import seaborn as sns
 
 # PARSER 
@@ -96,6 +97,25 @@ match args.t:
     case 'influence':
         show_influence()
     case 'chart':
-        print("--- FIRST PLACE ---")
-        print("-------------------")
-        print(df.groupby(['chart1']).size())
+        for i in range(1,6):
+            print("--- " + str(i) + "th PLACE ---")
+            print("-------------------")
+            print("\n")
+            print("--- GENERAL ---")
+            print("-------------------")
+            print(df.groupby(['chart' + str(i)]).size())
+            print("\n")
+            print("--- STUDENTS ---")
+            print("-------------------")
+            print(df_students.groupby(['chart' + str(i)]).size())
+            print("\n")
+            print("--- WORKERS ---")
+            print("-------------------")
+            print(df_workers.groupby(['chart' + str(i)]).size())
+            print("\n")
+            print("--- BOTH ---")
+            print("-------------------")
+            print(df_both.groupby(['chart' + str(i)]).size())
+            print("\n")
+            
+        
