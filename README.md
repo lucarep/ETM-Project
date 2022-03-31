@@ -31,4 +31,7 @@ E' possibile stampare una tabella riepilogativa passando come flag "-t" o "--tab
 ``` bash
 python .\ETMProject.py earnings -t
 ```
- 
+E' possibile salvare i grafici nella cartella plot passando come flag "-s" o "--save":
+ ``` bash
+python .\ETMProject.py earnings -s
+```

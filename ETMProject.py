@@ -12,6 +12,7 @@ parser = argparse.ArgumentParser(description="a simple python script to visualiz
 parser.add_argument("criteria",type=str,help="argument to plot",choices=["earnings","project","algorithm","social","influence","chart"])
 parser.add_argument("-v","--verbose",help="print some useful information",action="store_true")
 parser.add_argument("-t","--table",help="visualize data with a nice table",action="store_true")
+parser.add_argument("-s","--save",help="save plot in 'plots' folder",action="store_true")
 args = parser.parse_args()
 
 df = pd.read_csv('Sondaggio cryptovalute.csv')
@@ -44,6 +45,9 @@ def get_dataset_size(criteria):
         print(df_workers.groupby([criteria]).size())
         print(df_both.groupby([criteria]).size())
 
+def save_plot(criteria,category):
+    plt.savefig('plots/' + criteria + category + '.png')
+
 def plot_data(criteria):
     mean = df[criteria].mean()
     median = df[criteria].median()
@@ -51,11 +55,15 @@ def plot_data(criteria):
         describe_dataset()
         get_dataset_size(criteria)
     sns.displot(df, x=criteria,bins=10,palette="rocket",hue="Status", multiple="dodge")
+    if args.save:
+        save_plot(criteria.lower(),"_specific")
     sns.displot(df,x=criteria)
     plt.axvline(x=mean,color='red')
     plt.axvline(x=median,color='blue')
+    if args.save:
+        save_plot(criteria.lower(),"_general")
     plt.show()
- 
+    
 match args.criteria:
     case 'earnings':
         plot_data("Earnings")
