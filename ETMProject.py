@@ -44,79 +44,29 @@ def get_dataset_size(criteria):
         print(df_workers.groupby([criteria]).size())
         print(df_both.groupby([criteria]).size())
 
-def show_earnings():
-    mean = df["Earnings"].mean()
-    median = df["Earnings"].median()
+def plot_data(criteria):
+    mean = df[criteria].mean()
+    median = df[criteria].median()
     if args.verbose:    
         describe_dataset()
-        get_dataset_size("Earnings")
-    sns.displot(df, x="Earnings",bins=10,palette="rocket",hue="Status", multiple="dodge")
-    sns.displot(df,x="Earnings")
+        get_dataset_size(criteria)
+    sns.displot(df, x=criteria,bins=10,palette="rocket",hue="Status", multiple="dodge")
+    sns.displot(df,x=criteria)
     plt.axvline(x=mean,color='red')
     plt.axvline(x=median,color='blue')
     plt.show()
-
-def show_project():
-    mean = df["Project"].mean()
-    median = df["Project"].median()
-    if args.verbose:
-        describe_dataset()
-        get_dataset_size("Project")
-    sns.displot(df, x="Project",bins=10,palette="rocket",hue="Status", multiple="dodge")
-    sns.displot(df,x="Project")
-    plt.axvline(x=mean,color='red')
-    plt.axvline(x=median,color='blue')
-    plt.show()
-
-def show_algorithm():
-    mean = df["Algorithm"].mean()
-    median = df["Algorithm"].median()
-    if args.verbose:
-        describe_dataset()
-        get_dataset_size("Algorithm")
-    sns.displot(df, x="Algorithm",bins=10,palette="rocket",hue="Status", multiple="dodge")
-    sns.displot(df,x="Algorithm")
-    plt.axvline(x=mean,color='red')
-    plt.axvline(x=median,color='blue')
-    plt.show()
-
-def show_social():
-    mean = df["Social"].mean()
-    median = df["Social"].median()
-    if args.verbose:
-        describe_dataset()
-        get_dataset_size("Social")
-    sns.displot(df, x="Social",bins=10,palette="rocket",hue="Status", multiple="dodge")
-    sns.displot(df,x="Social")
-    plt.axvline(x=mean,color='red')
-    plt.axvline(x=median,color='blue')
-    plt.show()
-
-def show_influence():
-    mean = df["Influence"].mean()
-    median = df["Influence"].median()
-    if args.verbose:
-        describe_dataset()
-        get_dataset_size("Influence")
-    sns.displot(df, x="Influence",bins=10,palette="rocket",hue="Status", multiple="dodge")
-    sns.displot(df,x="Influence")
-    plt.axvline(x=mean,color='red')
-    plt.axvline(x=median,color='blue')
-    plt.show()
-
-
  
 match args.criteria:
     case 'earnings':
-        show_earnings()
+        plot_data("Earnings")
     case 'project':
-        show_project()
+        plot_data("Project")
     case 'algorithm':
-        show_algorithm()
+        plot_data("Algorithm")
     case 'social':
-        show_social()
+        plot_data("Social")
     case 'influence':
-        show_influence()
+        plot_data("Influence")
     case 'chart':
         for i in range(1,6):
             print("--- " + str(i) + "th PLACE ---" + "\n" + "------------------- \n" 
