@@ -26,6 +26,8 @@ df_students = df.loc[df['Status'] == 'Studio']
 df_workers = df.loc[df['Status'] == 'Lavoro']
 df_both = df.loc[df['Status'] == 'Entrambe']
 df_neither = df.loc[df['Status'] == 'Nessuna delle due']
+df_chart = df[["chart1", "chart2","chart3","chart4","chart5"]]
+
 
 # SHOWING THE DATA
 
@@ -76,19 +78,19 @@ match args.criteria:
     case 'influence':
         plot_data("Influence")
     case 'chart':
+        total = 0
         for i in range(1,6):
             print("--- " + str(i) + "th PLACE ---" + "\n" + "------------------- \n" 
                 + "--- GENERAL --- \n" + "-------------------")
             print(df.groupby(['chart' + str(i)]).size())
+            try:
+                a = df.groupby(['chart' + str(i)]).size() * (6 - i)
+                a["Redditività"]
+            except KeyError:
+                a["Redditività"] = 0
+            total += a
+            print("--- " + str(i) + "th PLACE ---" + "\n" + "------------------- \n" 
+                + "--- WEIGHTED --- \n" + "-------------------")
+            print(total.sort_values(ascending=False))
             print("\n")
-            print("--- STUDENTS --- \n" + "-------------------")
-            print(df_students.groupby(['chart' + str(i)]).size())
-            print("\n")
-            print("--- WORKERS --- \n" + "-------------------")
-            print(df_workers.groupby(['chart' + str(i)]).size())
-            print("\n")
-            print("--- BOTH --- \n" + "-------------------")
-            print(df_both.groupby(['chart' + str(i)]).size())
-            print("\n")
-            
         
