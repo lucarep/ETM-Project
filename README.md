@@ -16,6 +16,10 @@ Lo script ha come parametro necessario "criteria" che va specificato da riga di 
 ``` bash
 python .\ETMProject.py earnings 
 ```
+E' possibile salvare tutti i grafici in una volta sola nella cartella plots (senza visualizzarli) con il parametro "save-all":
+``` bash
+python .\ETMProject.py save-all
+```
 > per visualizzare tutti i possibili parametri puoi usare il comando di help:
 ``` bash
 python .\ETMProject.py -h
