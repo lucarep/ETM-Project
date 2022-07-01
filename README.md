@@ -1,5 +1,8 @@
 # ETM Project 
 
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white)
+
 ## Overview
 lo scopo del progettto,  è quello di investigare il consumo energetico di varie cryptovalute, mettendo a confronto diversi algoritmi di consenso. Per questo, dopo aver raccolto numerosi dati da svariati papers pubblicati, nella seconda parte del progetto è stato creato un sondaggio, le cui risposte sono state analizzate attraverso uno script in Python, mediante l'utilizzo di alcune famose librerie come:
 - Pandas
